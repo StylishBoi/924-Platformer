@@ -588,7 +588,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 18
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -612,7 +612,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -2111,7 +2111,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tilemap_67
+      name: Gem_Item
       rect:
         serializedVersion: 2
         x: 133
@@ -4610,6 +4610,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Gem_Item: -387640104
       tilemap_0: 1432995559
       tilemap_1: -734826516
       tilemap_10: 385505247
@@ -4754,7 +4755,6 @@ TextureImporter:
       tilemap_64: -458070451
       tilemap_65: -1238952756
       tilemap_66: -1600158975
-      tilemap_67: -387640104
       tilemap_68: 603073655
       tilemap_69: -235372071
       tilemap_7: 423934307

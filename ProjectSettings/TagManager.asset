@@ -2,8 +2,12 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Contact
+  - Danger
+  - SpawnPoint
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -41,3 +45,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1833871687
+    locked: 0
+  - name: B_Decoration
+    uniqueID: 783378905
+    locked: 0
+  - name: Platform
+    uniqueID: 321222133
+    locked: 0
+  - name: Danger
+    uniqueID: 689767959
+    locked: 0
+  - name: Mario
+    uniqueID: 4269481257
+    locked: 0
+  - name: F_Decoration
+    uniqueID: 3477859587
+    locked: 0
+  m_RenderingLayers:
+  - Default
