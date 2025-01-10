@@ -1,63 +1,65 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
+using System;
 
 public class PlayerControls : MonoBehaviour
 {
+    //Determines the character base values
     [SerializeField] private float _jumpForce = 10f;
     [SerializeField] private float _runForce = 10f;
-    [SerializeField] private float _wallJumpForce = 1f;
     
+    //Takes in different files to use functions in it
     [SerializeField] ContactDetector _isGrounded;
-    [SerializeField] DangerDetector _isDead;
-    [SerializeField] WallContactDetector _isLWalled;
-    [SerializeField] WallContactDetector _isRWalled;
-    
     [SerializeField] AudioManager _audioManager;
     
+    //Takes in compoments to animate and move
     private Rigidbody2D _rb;
+    private Animator _animator;
+    
+    private const string _horizontal = "Horizontal";
     
     bool _isJumping;
     private float _horizontalVelocity;
+    private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
     
     
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
-        //Verify if character has died or not
-        if (_isDead.DangerDetected)
+        if (_isGrounded.ContactDectected)
         {
-            Debug.Log("Death occured = Teleportation !!!!!!");
-            
-            transform.position = new Vector3(-9.15f,0f,0f);
+            coyoteTimeCounter = coyoteTime;
         }
-        
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
         //Verify if character can jump or not
-        if (_isJumping && _isGrounded.ContactDectected)
+        if (_isJumping && coyoteTimeCounter>0f)
         {
-            _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            _rb.linearVelocity=new Vector2(_rb.linearVelocity.x, _jumpForce);
         }
         
-        //Verify if character can walljump or not
-        else if (_isJumping && _isLWalled.WallContactDectected || _isJumping && _isRWalled.WallContactDectected)
-        {
-            _rb.AddForce(Vector2.up * _wallJumpForce, ForceMode2D.Impulse);
-        }
-        //Makes the character move based on input
+        //Makes the player move
         _rb.linearVelocityX = _horizontalVelocity * _runForce;
-
+        
+        //Set walking OR idle animation based on the velocity
+        _animator.SetFloat(_horizontal, Math.Abs(_rb.linearVelocityX));
+        
         //Turns the character based on the direction they're moving
         if (_rb.linearVelocityX < 0f)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (_rb.linearVelocityX > 0f)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
@@ -83,9 +85,6 @@ public class PlayerControls : MonoBehaviour
         _horizontalVelocity=context.ReadValue<float>();
     }
     
-    //1 - Fix score
-    //2 - Add audio
-    //3 - Add tremplin
     //4 - Start score and UI
     //5 - Camera blocking (Not too high or too low)
 }

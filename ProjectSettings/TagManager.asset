@@ -8,6 +8,8 @@ TagManager:
   - Danger
   - SpawnPoint
   - Audio
+  - CheckPoint
+  - SpawnManager
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Wall
   - 
   - 
   - 
